@@ -11,10 +11,10 @@ describe("Class ititialisation", () => {
         const person = new Engineer(name, id, email, github);
 
 
-        expect(person.name).toBe("Linus");
-        expect(person.id).toBe(2);
-        expect(person.email).toBe("linus@test.com");
-        expect(person.github).toBe("torvalds");
+        expect(person.name).toBe(name);
+        expect(person.id).toBe(id);
+        expect(person.email).toBe(email);
+        expect(person.github).toBe(github);
 
     });
 
