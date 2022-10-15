@@ -1,3 +1,4 @@
+const Employee = require("../lib/Employee");
 const Engineer = include("../lib/Engineer");
 
 describe("Class ititialisation", () => {
@@ -16,6 +17,12 @@ describe("Class ititialisation", () => {
         expect(person.github).toBe("torvalds");
 
     });
+
+    it("is an instance of Employee", () => {
+        const person = new Engineer("John", 2, "john@test.com", "j0hn");
+
+        expect(person).toBeInstanceOf(Employee);
+    })
 });
 
 describe("Class methods", () => {
