@@ -11,9 +11,9 @@ describe("Initialisation", () => {
         const person = new Employee(name, id, email);
 
 
-        expect(person.name).toBe("John");
-        expect(person.id).toBe(2);
-        expect(person.email).toBe("john@test.com");
+        expect(person.name).toBe(name);
+        expect(person.id).toBe(id);
+        expect(person.email).toBe(email);
     });
 });
 
