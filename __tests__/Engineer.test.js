@@ -1,5 +1,5 @@
 const Employee = require("../lib/Employee");
-const Engineer = include("../lib/Engineer");
+const Engineer = require("../lib/Engineer");
 
 describe("Class ititialisation", () => {
     it("Has all of the appropriate properties", () => {
