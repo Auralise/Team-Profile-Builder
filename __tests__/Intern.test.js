@@ -12,10 +12,10 @@ describe("Class initialisation", () => {
         const person = new Intern(name, id, email, school);
 
 
-        expect(person.name).toBe("John");
-        expect(person.id).toBe(2);
-        expect(person.email).toBe("john@test.com");
-        expect(person.school).toBe("SomeU");
+        expect(person.name).toBe(name);
+        expect(person.id).toBe(id);
+        expect(person.email).toBe(email);
+        expect(person.school).toBe(school);
     });
 
     it("is an instance of Employee", () => {

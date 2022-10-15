@@ -26,11 +26,6 @@ describe("Class initialisation", () => {
 });
 
 describe("Class functions", () => {
-    it("returns school when getSchool() called", () => {
-        const person = new Manager("Matt", 86, "matt@test.com", "SomeU");
-
-        expect(person.getSchool()).toBe("SomeU");
-    })
 
     it("returns Manager when getRole() is called", () => {
         const person = new Manager("Matt", 86, "matt@test.com", "SomeU");
