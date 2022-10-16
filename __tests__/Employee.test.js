@@ -41,4 +41,10 @@ describe("Class methods", () => {
 
         expect(person.getRole()).toBe("Employee");
     });
+
+    it("returns the correct Unicode value string when getLogo() is called", () => {
+        const person = new Employee("Ari", 4, "ari@test.com");
+
+        expect(person.getLogo()).toBe("1F9E2");
+    })
 });
