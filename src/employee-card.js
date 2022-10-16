@@ -8,7 +8,7 @@ const getClassSpecificAttr = employee => {
     else if (employee.hasOwnProperty("github")) {
         return `
             <li class="list-group-item">
-                Github: <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a>
+                Github: <a href="https://github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a>
             </li>`;
     } 
     else if (employee.hasOwnProperty("school")) {
