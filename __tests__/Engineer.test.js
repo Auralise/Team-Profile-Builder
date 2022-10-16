@@ -37,4 +37,10 @@ describe("Class methods", () => {
 
         expect(person.getRole()).toBe("Engineer");
     });
+
+    it("returns the correct Unicode value string when getLogo() is called", () => {
+        const person = new Engineer("Ari", 4, "ari@test.com");
+
+        expect(person.getLogo()).toBe("1F9EA");
+    });
 });

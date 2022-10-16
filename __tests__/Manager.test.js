@@ -28,8 +28,20 @@ describe("Class initialisation", () => {
 describe("Class functions", () => {
 
     it("returns Manager when getRole() is called", () => {
-        const person = new Manager("Matt", 86, "matt@test.com", "SomeU");
+        const person = new Manager("Matt", 86, "matt@test.com", 1);
 
         expect(person.getRole()).toBe("Manager");
-    })
+    });
+
+    it("returns Office Number when getOfficeNum() is called", () => {
+        const person = new Manager("Matt", 86, "matt@test.com", 1);
+
+        expect(person.getOfficeNum()).toBe(1);
+    });
+
+    it("returns the correct Unicode value string when getLogo() is called", () => {
+        const person = new Manager("Ari", 4, "ari@test.com");
+
+        expect(person.getLogo()).toBe("1F3E2");
+    });
 })

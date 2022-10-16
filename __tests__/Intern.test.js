@@ -22,7 +22,7 @@ describe("Class initialisation", () => {
         const person = new Intern("John", 2, "john@test.com", "AnotherU");
 
         expect(person).toBeInstanceOf(Employee);
-    })
+    });
 });
 
 describe("Class functions", () => {
@@ -36,5 +36,11 @@ describe("Class functions", () => {
         const person = new Intern("Matt", 86, "matt@test.com", "SomeU");
 
         expect(person.getRole()).toBe("Intern");
-    })
+    });
+
+    it("returns the correct Unicode value string when getLogo() is called", () => {
+        const person = new Intern("Ari", 4, "ari@test.com");
+
+        expect(person.getLogo()).toBe("1F392");
+    });
 })
