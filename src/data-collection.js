@@ -73,12 +73,9 @@ const managerQuestions = [
         }
     },
     {
-        type: "list",
-        message: "What kind of team member do you want to add?",
-        choices: [
-            "Engineer",
-            "Intern",
-        ],
+        type: "number",
+        message: "Managers office number: ",
+        name: "managerOffice",
     },
 
 ]
@@ -113,7 +110,7 @@ const employeeQuestions = [
     {
         type: "input",
         message: "Engineer's github: ",
-        name: "github",
+        name: "employeeGithub",
         when(answers){
             switch (answers.employeeType){
                 case "Engineer":
@@ -130,7 +127,7 @@ const employeeQuestions = [
     {
         type: "input",
         message: "Intern's school: ",
-        name: "school",
+        name: "employeeSchool",
         when(answers){
             switch (answers.employeeType){
                 case "Intern":
@@ -145,15 +142,73 @@ const employeeQuestions = [
     },
     {
         type: "confirm",
-        message: "Do you want to add another team member? (y/N)",
+        message: "Do you want to add another team member? (y/n)",
         name: "addAnother",
         default: true,
     }
 
 ]
 
+const usedIds = [];
+
+//Max and min for ID values 
+const idMin = 1000;
+const idMax = 9999;
+
+//this function is to practice recursive functions. This is to emulate the ID numbers of a large organisation
+const generateId = (min, max) => {
+    let id = Math.floor((Math.random() * (max - min)) + min); // select random id between min and max
+    if(usedIds.includes(id)){ 
+        //if duplicate, try again recursively and return the base case
+        return generateId(min,max);
+    }
+    else 
+    {
+        usedIds.push(id);
+        return id;
+    }
+}
+
+const createEmployee = answers => {
+    if(answers.managerName){
+        return new Manager(answers.managerName, generateId(idMin, idMax), answers.managerEmail, answers.managerOffice);
+    }
+    else {
+        switch (answers.employeeType) {
+            case "Engineer":
+                return new Engineer(answers.employeeName, generateId(idmin, idMax), answers.employeeEmail, answers.employeeGithub);
+            case "Intern":
+                return new Intern(answers.employeeName, generateId(idMin, idMax), answers.employeeEmail, answers.employeeSchool);
+            default: 
+                throw new Error(`Failed to create new object. Invalid type.`);
+        }
+    }
+}
+
+const addNewEmployees = async employeeList => {
+
+    const answers = await inquirer.prompt(employeeQuestions);
+    employeeList.push(createEmployee(answers));
+
+    if (answers.addAnother) return addNewEmployees(employeeList);
+    else return employeeList;
+}
 
 
-//TODO - implement and export inquirer functions
-//TODO - construct the array of employee objects
+const collectData = async () => {
+    const employeeList = [];
+    const answers = {};
+    try {
+        answers = await inquirer.prompt(managerQuestions);
+    }
+    catch (e) {
+        throw new Error(`Failed to collect data`);
+    }
 
+    employeeList.push(createEmployee(answers));
+
+    return addNewEmployees(employeeList);
+}
+
+
+exports.collectData = collectData;
