@@ -1,8 +1,8 @@
 const inquirer = require("inquirer");
-const Employee = require("./lib/Employee");
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+const Employee = require("../lib/Employee");
+const Manager = require("../lib/Manager");
+const Engineer = require("../lib/Engineer");
+const Intern = require("../lib/Intern");
 
 
 //Validation functions
@@ -61,7 +61,7 @@ const managerQuestions = [
         message: "Manager's name: ",
         name: "managerName",
         validate: input => {
-            return validateEmail(input);
+            return validateName(input);
         }
     },
     {
@@ -176,7 +176,7 @@ const createEmployee = answers => {
     else {
         switch (answers.employeeType) {
             case "Engineer":
-                return new Engineer(answers.employeeName, generateId(idmin, idMax), answers.employeeEmail, answers.employeeGithub);
+                return new Engineer(answers.employeeName, generateId(idMin, idMax), answers.employeeEmail, answers.employeeGithub);
             case "Intern":
                 return new Intern(answers.employeeName, generateId(idMin, idMax), answers.employeeEmail, answers.employeeSchool);
             default: 
@@ -197,12 +197,12 @@ const addNewEmployees = async employeeList => {
 
 const collectData = async () => {
     const employeeList = [];
-    const answers = {};
+    let answers = {};
     try {
         answers = await inquirer.prompt(managerQuestions);
     }
-    catch (e) {
-        throw new Error(`Failed to collect data`);
+    catch (err) {
+        throw new Error(`Failed to collect data\nError Text: ${err}`);
     }
 
     employeeList.push(createEmployee(answers));
