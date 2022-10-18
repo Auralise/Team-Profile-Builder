@@ -1,4 +1,4 @@
-const ec = require('./employee-card');
+const {buildEmployeeCard} = require('./employee-card');
 const {readFile} = require('fs/promises');
 
 const readTemplate = async () => {
@@ -8,7 +8,7 @@ const readTemplate = async () => {
 const buildPage = async employeeList => {
     let page = await readTemplate();
 
-    return page.replace("[[CARDS]]", employeeList.map(employee => ec.buildEmployeeCard(employee)).join('\n'))
+    return page.replace("[[CARDS]]", employeeList.map(employee => buildEmployeeCard(employee)).join('\n'))
 
 }
 

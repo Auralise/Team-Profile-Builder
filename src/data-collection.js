@@ -142,7 +142,7 @@ const employeeQuestions = [
     },
     {
         type: "confirm",
-        message: "Do you want to add another team member? (y/n)",
+        message: "Do you want to add another team member?",
         name: "addAnother",
         default: true,
     }
