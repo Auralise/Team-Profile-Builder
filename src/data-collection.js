@@ -169,6 +169,7 @@ const generateId = (min, max) => {
     }
 }
 
+// Create appropriate employee object based on the input
 const createEmployee = answers => {
     if(answers.managerName){
         return new Manager(answers.managerName, generateId(idMin, idMax), answers.managerEmail, answers.managerOffice);
@@ -185,6 +186,7 @@ const createEmployee = answers => {
     }
 }
 
+//Add new employees recursively until the user says stop
 const addNewEmployees = async employeeList => {
 
     const answers = await inquirer.prompt(employeeQuestions);
@@ -194,18 +196,18 @@ const addNewEmployees = async employeeList => {
     else return employeeList;
 }
 
-
+//Collect data from the user
 const collectData = async () => {
     const employeeList = [];
     let answers = {};
     try {
         answers = await inquirer.prompt(managerQuestions);
+        employeeList.push(createEmployee(answers));
     }
     catch (err) {
         throw new Error(`Failed to collect data\nError Text: ${err}`);
     }
-
-    employeeList.push(createEmployee(answers));
+    
 
     return addNewEmployees(employeeList);
 }

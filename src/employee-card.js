@@ -1,3 +1,4 @@
+//Build the class specific component for an employee
 const getClassSpecificAttr = employee => {
     if (employee.hasOwnProperty("officeNumber")) {
         return `
@@ -22,6 +23,7 @@ const getClassSpecificAttr = employee => {
     }
 }
 
+//Build the employee card
 const buildEmployeeCard = employee => {
 
     const card = `
